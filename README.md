@@ -16,15 +16,21 @@ So I made my way out of it.
 
 ## Tested Environment
 macOS 10.15.7 (19H2)
+
 vmware fusion player version 12.0.0 (16880131)
+
 ubuntu 18.04.5
 
 ## File description
 * armnn-dist.tar.gz
-	compiled and compressed tarball
-	copy this file to `/home/pi` of Raspberry Pi and follow instruction of [ARM reference guide](https://developer.arm.com/solutions/machine-learning-on-arm/developer-material/how-to-guides/cross-compiling-arm-nn-for-the-raspberry-pi-and-tensorflow/extracting-arm-nn-on-your-raspberry-pi-and-running-a-sample-program)'s "Extract the libraries, binaries, and directories to your Raspberry Pi" section to move along & test
+
+compiled and compressed tarball
+
+copy this file to `/home/pi` of Raspberry Pi and follow instruction of [ARM reference guide](https://developer.arm.com/solutions/machine-learning-on-arm/developer-material/how-to-guides/cross-compiling-arm-nn-for-the-raspberry-pi-and-tensorflow/extracting-arm-nn-on-your-raspberry-pi-and-running-a-sample-program)'s "Extract the libraries, binaries, and directories to your Raspberry Pi" section to move along & test
 
 * instruction.sh
-	source instruction script
-	took about 2 hours on my machine (allocated 4GB of RAM on VM)
+
+source instruction script
+
+took about 2 hours on my machine (allocated 4GB of RAM on VM)
 
