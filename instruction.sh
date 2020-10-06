@@ -105,7 +105,10 @@ cd $BASEDIR/armnn
 mkdir build
 cd build
 
-cmake .. -DCMAKE_LINKER=/usr/bin/arm-linux-gnueabihf-ld -DCMAKE_C_COMPILER=/usr/bin/arm-linux-gnueabihf-gcc -DCMAKE_CXX_COMPILER=/usr/bin/arm-linux-gnueabihf-g++ -DCMAKE_C_COMPILER_FLAGS=-fPIC -DCMAKE_CXX_FLAGS=-mfpu=neon -DARMCOMPUTE_ROOT=$BASEDIR/ComputeLibrary -DARMCOMPUTE_BUILD_DIR=$BASEDIR/ComputeLibrary/build -DBOOST_ROOT=$BASEDIR/boost -DTF_GENERATED_SOURCES=$BASEDIR/tensorflow-protobuf -DBUILD_TF_PARSER=1 -DBUILD_ONNX_PARSER=1 -DONNX_GENERATED_SOURCES=$BASEDIR/onnx -DBUILD_TF_LITE_PARSER=1 -DTF_LITE_GENERATED_PATH=$BASEDIR/tflite -DFLATBUFFERS_ROOT=$BASEDIR/flatbuffers-arm32 -DFLATC_DIR=$BASEDIR/flatbuffers/build -DPROTOBUF_ROOT=$BASEDIR/protobuf-arm -DARMCOMPUTENEON=1 -DARMNNREF=1 -DSAMPLE_DYNAMIC_BACKEND=1 -DDYNAMIC_BACKEND_PATHS=/home/pi/armnn-dist/src/dynamic/sample -DDYNAMIC_BACKEND_BUILD_DIR /home/pi/armnn-dist
+sed -i '350d' $BASEDIR/armnn/cmake/GlobalConfig.cmake
+sed -i '350iadd_definitions(-DDYNAMIC_BACKEND_BUILD_DIR="/home/pi/armnn-dist")' $BASEDIR/armnn/cmake/GlobalConfig.cmake
+
+cmake .. -DCMAKE_LINKER=/usr/bin/arm-linux-gnueabihf-ld -DCMAKE_C_COMPILER=/usr/bin/arm-linux-gnueabihf-gcc -DCMAKE_CXX_COMPILER=/usr/bin/arm-linux-gnueabihf-g++ -DCMAKE_C_COMPILER_FLAGS=-fPIC -DCMAKE_CXX_FLAGS=-mfpu=neon -DARMCOMPUTE_ROOT=$BASEDIR/ComputeLibrary -DARMCOMPUTE_BUILD_DIR=$BASEDIR/ComputeLibrary/build -DBOOST_ROOT=$BASEDIR/boost -DTF_GENERATED_SOURCES=$BASEDIR/tensorflow-protobuf -DBUILD_TF_PARSER=1 -DBUILD_ONNX_PARSER=1 -DONNX_GENERATED_SOURCES=$BASEDIR/onnx -DBUILD_TF_LITE_PARSER=1 -DTF_LITE_GENERATED_PATH=$BASEDIR/tflite -DFLATBUFFERS_ROOT=$BASEDIR/flatbuffers-arm32 -DFLATC_DIR=$BASEDIR/flatbuffers/build -DPROTOBUF_ROOT=$BASEDIR/protobuf-arm -DARMCOMPUTENEON=1 -DARMNNREF=1 -DSAMPLE_DYNAMIC_BACKEND=1 -DDYNAMIC_BACKEND_PATHS=/home/pi/armnn-dist/src/dynamic/sample
 make
 
 # Extracting Arm NN on your Raspberry Pi and running a sample program
