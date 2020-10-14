@@ -108,7 +108,7 @@ cd build
 sed -i '350d' $BASEDIR/armnn/cmake/GlobalConfig.cmake
 sed -i '350iadd_definitions(-DDYNAMIC_BACKEND_BUILD_DIR="/home/pi/armnn-dist")' $BASEDIR/armnn/cmake/GlobalConfig.cmake
 
-cmake .. -DCMAKE_LINKER=/usr/bin/arm-linux-gnueabihf-ld -DCMAKE_C_COMPILER=/usr/bin/arm-linux-gnueabihf-gcc -DCMAKE_CXX_COMPILER=/usr/bin/arm-linux-gnueabihf-g++ -DCMAKE_C_COMPILER_FLAGS=-fPIC -DCMAKE_CXX_FLAGS=-mfpu=neon -DARMCOMPUTE_ROOT=$BASEDIR/ComputeLibrary -DARMCOMPUTE_BUILD_DIR=$BASEDIR/ComputeLibrary/build -DBOOST_ROOT=$BASEDIR/boost -DTF_GENERATED_SOURCES=$BASEDIR/tensorflow-protobuf -DBUILD_TF_PARSER=1 -DBUILD_ONNX_PARSER=1 -DONNX_GENERATED_SOURCES=$BASEDIR/onnx -DBUILD_TF_LITE_PARSER=1 -DTF_LITE_GENERATED_PATH=$BASEDIR/tflite -DFLATBUFFERS_ROOT=$BASEDIR/flatbuffers-arm32 -DFLATC_DIR=$BASEDIR/flatbuffers/build -DPROTOBUF_ROOT=$BASEDIR/protobuf-arm -DARMCOMPUTENEON=1 -DARMNNREF=1 -DSAMPLE_DYNAMIC_BACKEND=1 -DDYNAMIC_BACKEND_PATHS=/home/pi/armnn-dist/src/dynamic/sample
+cmake .. -DCMAKE_LINKER=/usr/bin/arm-linux-gnueabihf-ld -DCMAKE_C_COMPILER=/usr/bin/arm-linux-gnueabihf-gcc -DCMAKE_CXX_COMPILER=/usr/bin/arm-linux-gnueabihf-g++ -DCMAKE_C_COMPILER_FLAGS=-fPIC -DCMAKE_CXX_FLAGS=-mfpu=neon -DARMCOMPUTE_ROOT=$BASEDIR/ComputeLibrary -DARMCOMPUTE_BUILD_DIR=$BASEDIR/ComputeLibrary/build -DBOOST_ROOT=$BASEDIR/boost -DTF_GENERATED_SOURCES=$BASEDIR/tensorflow-protobuf -DBUILD_TF_PARSER=1 -DBUILD_TESTS=1 -DBUILD_ONNX_PARSER=1 -DONNX_GENERATED_SOURCES=$BASEDIR/onnx -DBUILD_TF_LITE_PARSER=1 -DTF_LITE_GENERATED_PATH=$BASEDIR/tflite -DFLATBUFFERS_ROOT=$BASEDIR/flatbuffers-arm32 -DFLATC_DIR=$BASEDIR/flatbuffers/build -DPROTOBUF_ROOT=$BASEDIR/protobuf-arm -DARMCOMPUTENEON=1 -DARMNNREF=1 -DSAMPLE_DYNAMIC_BACKEND=1 -DDYNAMIC_BACKEND_PATHS=/home/pi/armnn-dist/src/dynamic/sample
 make
 
 # Extracting Arm NN on your Raspberry Pi and running a sample program
@@ -141,20 +141,22 @@ cp -r $BASEDIR/boost $BASEDIR/armnn-dist/boost
 
 cp $BASEDIR/armnn/build/libtimelineDecoder.so.$ARMNN_MAJOR_VERSION.$ARMNN_MINOR_VERSION $BASEDIR/armnn-dist/armnn/lib
 ln -s libtimelineDecoder.so.$ARMNN_MAJOR_VERSION.$ARMNN_MINOR_VERSION $BASEDIR/armnn-dist/armnn/lib/libtimelineDecoder.so.$ARMNN_MAJOR_VERSION
-ln -s libtimelineDecoder.so.$ARMNN_MAJOR_VERSION $BASEDIR/armnn-dist/armnn/lib/libtimelineDecoder
+ln -s libtimelineDecoder.so.$ARMNN_MAJOR_VERSION $BASEDIR/armnn-dist/armnn/lib/libtimelineDecoder.so
 cp $BASEDIR/armnn/build/libtimelineDecoderJson.so.$ARMNN_MAJOR_VERSION.$ARMNN_MINOR_VERSION $BASEDIR/armnn-dist/armnn/lib
 ln -s libtimelineDecoderJson.so.$ARMNN_MAJOR_VERSION.$ARMNN_MINOR_VERSION $BASEDIR/armnn-dist/armnn/lib/libtimelineDecoderJson.so.$ARMNN_MAJOR_VERSION
-ln -s libtimelineDecoderJson.so.$ARMNN_MAJOR_VERSION $BASEDIR/armnn-dist/armnn/lib/libtimelineDecoderJson
+ln -s libtimelineDecoderJson.so.$ARMNN_MAJOR_VERSION $BASEDIR/armnn-dist/armnn/lib/libtimelineDecoderJson.so
 cp $BASEDIR/armnn/build/libarmnnBasePipeServer.so.$ARMNN_MAJOR_VERSION.$ARMNN_MINOR_VERSION $BASEDIR/armnn-dist/armnn/lib
 ln -s libarmnnBasePipeServer.so.$ARMNN_MAJOR_VERSION.$ARMNN_MINOR_VERSION $BASEDIR/armnn-dist/armnn/lib/libarmnnBasePipeServer.so.$ARMNN_MAJOR_VERSION
-ln -s libarmnnBasePipeServer.so.$ARMNN_MAJOR_VERSION $BASEDIR/armnn-dist/armnn/lib/libarmnnBasePipeServer
+ln -s libarmnnBasePipeServer.so.$ARMNN_MAJOR_VERSION $BASEDIR/armnn-dist/armnn/lib/libarmnnBasePipeServer.so
 
 cp $BASEDIR/armnn/build/libarmnnOnnxParser.so.$ARMNN_MAJOR_VERSION.$ARMNN_MINOR_VERSION $BASEDIR/armnn-dist/armnn/lib
 ln -s libarmnnOnnxParser.so.$ARMNN_MAJOR_VERSION.$ARMNN_MINOR_VERSION $BASEDIR/armnn-dist/armnn/lib/libarmnnOnnxParser.so.$ARMNN_MAJOR_VERSION
-ln -s libarmnnOnnxParser.so.$ARMNN_MAJOR_VERSION $BASEDIR/armnn-dist/armnn/lib/libarmnnOnnxParser
+ln -s libarmnnOnnxParser.so.$ARMNN_MAJOR_VERSION $BASEDIR/armnn-dist/armnn/lib/libarmnnOnnxParser.so
 cp $BASEDIR/armnn/build/libarmnnTfLiteParser.so.$ARMNN_MAJOR_VERSION.$ARMNN_MINOR_VERSION $BASEDIR/armnn-dist/armnn/lib
 ln -s libarmnnTfLiteParser.so.$ARMNN_MAJOR_VERSION.$ARMNN_MINOR_VERSION $BASEDIR/armnn-dist/armnn/lib/libarmnnTfLiteParser.so.$ARMNN_MAJOR_VERSION
-ln -s libarmnnTfLiteParser.so.$ARMNN_MAJOR_VERSION $BASEDIR/armnn-dist/armnn/lib/libarmnnTfLiteParser
+ln -s libarmnnTfLiteParser.so.$ARMNN_MAJOR_VERSION $BASEDIR/armnn-dist/armnn/lib/libarmnnTfLiteParser.so
+
+cp $BASEDIR/armnn/build/tests/libinferenceTest.a $BASEDIR/armnn-dist/armnn/lib
 
 mkdir -p $BASEDIR/armnn-dist/src/backends/backendsCommon/test/
 cp -r $BASEDIR/armnn/build/src/backends/backendsCommon/test/testSharedObject $BASEDIR/armnn-dist/src/backends/backendsCommon/test/testSharedObject/
