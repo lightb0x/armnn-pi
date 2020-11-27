@@ -22,13 +22,13 @@ vmware fusion player version 12.0.0 (16880131)
 ubuntu 18.04.5
 
 ## File description
-* armnn-dist.tar.gz
+* `armnn-dist.tar.gz`
 
-compiled and compressed tarball
+compiled and compressed tarball, result of `instruction.sh`
 
 copy this file to `/home/pi` of Raspberry Pi and follow instruction of [ARM reference guide](https://developer.arm.com/solutions/machine-learning-on-arm/developer-material/how-to-guides/cross-compiling-arm-nn-for-the-raspberry-pi-and-tensorflow/extracting-arm-nn-on-your-raspberry-pi-and-running-a-sample-program)'s "Extract the libraries, binaries, and directories to your Raspberry Pi" section to move along & test
 
-* instruction.sh
+* `instruction.sh`
 
 source instruction script
 
